@@ -15,6 +15,7 @@ import { MusicControls } from '@ionic-native/music-controls';
   templateUrl: 'chant-count.html',
 })
 export class ChantCountPage {
+  //cache : number=0;
   count : number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private musicControls: MusicControls, private zone:NgZone) {
@@ -61,10 +62,10 @@ export class ChantCountPage {
                       alert("Connected!!");
                      break;
                  default:
-                 this.zone.run(() => {
-                    this.count++;
-                 });
-                     break;
+                  this.zone.run(() => {
+                     this.count++;
+                  });
+                break;
              }
     
   });
@@ -74,7 +75,7 @@ export class ChantCountPage {
 
      this.musicControls.listen(); // activates the observable above
     
-     this.musicControls.updateIsPlaying(true);
+     this.musicControls.updateIsPlaying(false);
 
 
 }

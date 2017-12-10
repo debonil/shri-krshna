@@ -9,7 +9,7 @@ import { ChantCountPage } from '../chant-count/chant-count';
 export class HomePage {
   //private chantCountPage:ChantCountPage;
   constructor(public navCtrl: NavController) {
-    //this.navCtrl.push(ChantCountPage);
+    this.navCtrl.push(ChantCountPage);
   }
 
   goToChantCountPage(){
