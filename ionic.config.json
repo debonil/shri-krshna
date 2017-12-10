@@ -1,0 +1,8 @@
+{
+  "name": "shri-krshna",
+  "app_id": "4303498f",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
