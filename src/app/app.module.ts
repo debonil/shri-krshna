@@ -7,23 +7,22 @@ import { MusicControls } from '@ionic-native/music-controls';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ChantCountPage } from '../pages/chant-count/chant-count';
+import { ChantCountPageModule } from '../pages/chant-count/chant-count.module';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ChantCountPage,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChantCountPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ChantCountPage
   ],
   providers: [
     StatusBar,

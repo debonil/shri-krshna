@@ -9,7 +9,7 @@ import { MusicControls } from '@ionic-native/music-controls';
  * Ionic pages and navigation.
  */
 
-/* @IonicPage() */
+@IonicPage()
 @Component({
   selector: 'page-chant-count',
   templateUrl: 'chant-count.html',
