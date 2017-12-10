@@ -3,7 +3,7 @@
     <name>Shri Krshna</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="debonil.ghosh@gmail.com" href="https://www.linkedin.com/in/debonilghosh/">Debonil Ghosh</author>
-    <content original-src="index.html" src="http://192.168.0.103:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
