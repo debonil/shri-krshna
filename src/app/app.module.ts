@@ -8,6 +8,7 @@ import { MusicControls } from '@ionic-native/music-controls';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChantCountPageModule } from '../pages/chant-count/chant-count.module';
+import { AdMobFree} from '@ionic-native/admob-free';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ChantCountPageModule } from '../pages/chant-count/chant-count.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MusicControls,
+    AdMobFree,
   ]
 })
 export class AppModule {}
