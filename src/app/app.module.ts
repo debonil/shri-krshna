@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChantCountPageModule } from '../pages/chant-count/chant-count.module';
 import { AdMobFree} from '@ionic-native/admob-free';
+import { AppContextProvider } from '../providers/app-context/app-context';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AdMobFree} from '@ionic-native/admob-free';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MusicControls,
     AdMobFree,
+    AppContextProvider,
   ]
 })
 export class AppModule {}

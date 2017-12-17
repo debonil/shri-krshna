@@ -1,7 +1,6 @@
 import { Component, NgZone  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MusicControls } from '@ionic-native/music-controls';
-import { AdMobFree,AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
 /**
  * Generated class for the ChantCountPage page.
@@ -19,10 +18,10 @@ export class ChantCountPage {
   //cache : number=0;
   count : number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private musicControls: MusicControls, private zone:NgZone,private admobFree: AdMobFree) {
+    private musicControls: MusicControls, private zone:NgZone) {
   }
 
-/* 
+
   ionViewDidEnter(){
     this.musicControls.create({
       track       : 'Time is Running Out',        // optional, default : ''
@@ -79,18 +78,6 @@ export class ChantCountPage {
      this.musicControls.updateIsPlaying(false);
 
 
-} */
-
-ionViewDidLoad(){
-  let bannerConfig: AdMobFreeBannerConfig = {
-      autoShow: true,
-      id: 'ca-app-pub-1527462316825728/5928560906',//id: Your Ad Unit ID goes here
-  };
-
-  this.admobFree.banner.config(bannerConfig);
-
-  this.admobFree.banner.prepare().then(() => {
-      // success
-  }).catch(e => console.log(e));
 }
+
 }
