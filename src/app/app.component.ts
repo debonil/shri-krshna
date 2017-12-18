@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav, Events } from 'ionic-angular';
+import { Platform, MenuController, Nav, Events, Alert } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AdMobFree,AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+import { AdMobFree,AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free';
+//import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ChantCountPage } from '../pages/chant-count/chant-count';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 
 export interface PageInterface {
@@ -23,6 +26,8 @@ export interface PageInterface {
   templateUrl: 'app.html'
 })
 export class MyApp {
+  alert: Alert;
+  backButtonPressedOnceToExit: boolean;
   rootPage:any = HomePage;
     // the root nav is a child of the root app component
   // @ViewChild(Nav) gets a reference to the app's root nav
@@ -53,13 +58,19 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public menuCtrl: MenuController,
+    public events:Events,
     public admobFree:AdMobFree,
-    public events:Events
+   // private ga: GoogleAnalytics,
+   public alertCtrl: AlertController,
+   public toastCtrl: ToastController,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.backgroundColorByHexString("E91E63");
+     // this.loadGoogleAnalytics();
+      this.showAdBanner();
+      this.registerBackButton();
       splashScreen.hide();
     });
   }
@@ -136,17 +147,123 @@ export class MyApp {
       //this.userData.logout();
     }
   }
-showAd(){
-  let bannerConfig: AdMobFreeBannerConfig = {
-      autoShow: true,
-      id: 'ca-app-pub-1527462316825728/5928560906',//id: Your Ad Unit ID goes here
-  };
+  showAdBanner(){
+    let bannerConfig: AdMobFreeBannerConfig = {
+        autoShow: true,
+        id: 'ca-app-pub-1527462316825728/5928560906',//id: Your Ad Unit ID goes here
+        overlap : false,
+    };
 
-  this.admobFree.banner.config(bannerConfig);
+    this.admobFree.banner.config(bannerConfig);
 
-  this.admobFree.banner.prepare().then(() => {
-      // success
-  }).catch(e => console.log(e));
-}
+    this.admobFree.banner.prepare().then(() => {
+        // success
+    }).catch(e => console.log(e));
+  }
+  showAdInterstitial(){
+    let adConfig: AdMobFreeInterstitialConfig = {
+        autoShow: true,
+        id: 'ca-app-pub-1527462316825728/7513717693',//id: Your Ad Unit ID goes here
+    };
+
+    this.admobFree.interstitial.config(adConfig);
+
+    this.admobFree.interstitial.prepare().then(() => {
+        // success
+    }).catch(e => console.log(e));
+  }
+  
+  showAdRewardVideo(){
+    let adConfig: AdMobFreeRewardVideoConfig = {
+        autoShow: true,
+        id: 'ca-app-pub-1527462316825728/7130574319',//id: Your Ad Unit ID goes here
+    };
+
+    this.admobFree.rewardVideo.config(adConfig);
+
+    this.admobFree.rewardVideo.prepare().then(() => {
+        // success
+    }).catch(e => console.log(e));
+  }
+  
+
+  /* loadGoogleAnalytics(): any {
+    this.ga.startTrackerWithId('UA-111374105-1')
+   .then(() => {
+     console.log('Google analytics is ready now');
+        this.ga.trackView('AppComponent');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log('Error starting GoogleAnalytics', e));
+  } */
+
+  registerBackButton(){
+    this.platform.registerBackButtonAction(() => {
+
+
+      //uncomment this and comment code below to to show toast and exit app
+      if (this.backButtonPressedOnceToExit) {
+        this.platform.exitApp();
+      } else if (this.nav.canGoBack()) {
+        this.nav.pop({});
+      } else {
+        this.showToast();
+        this.backButtonPressedOnceToExit = true;
+        setTimeout(() => {
+
+          this.backButtonPressedOnceToExit = false;
+        },2000)
+      }
+
+      /* if(this.nav.canGoBack()){
+        this.nav.pop();
+      }else{
+        if(this.alert){ 
+          this.alert.dismiss();
+          this.alert =null;     
+        }else{
+          this.showAlert();
+         }
+      } */
+    });
+  }
+
+  /* showAlert() {
+    this.alert = this.alertCtrl.create({
+      title: 'Exit?',
+      message: 'Do you want to exit the app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.alert =null;
+          }
+        },
+        {
+          text: 'Exit',
+          handler: () => {
+            this.platform.exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
+  } */
+
+    showToast() {
+      let toast = this.toastCtrl.create({
+        message: 'Press Again to exit',
+        duration: 2000,
+        position: 'bottom'
+      });
+
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+
+      toast.present();
+    }
 }
 
