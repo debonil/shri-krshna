@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ChantCountPage } from '../chant-count/chant-count';
+import { AppContextProvider } from '../../providers/app-context/app-context';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  //private chantCountPage:ChantCountPage;
-  constructor(public navCtrl: NavController) {
+  target:number;
+  constructor(public navCtrl: NavController,public appCtx: AppContextProvider) {
     //this.navCtrl.push(ChantCountPage);
+    console.log(appCtx);
+    
   }
 
   ionViewDidEnter(){
 
   }
   goToChantCountPage(){
-    this.navCtrl.push(ChantCountPage);
+    this.navCtrl.push(ChantCountPage,{"target":this.target});
   }
   
 /*   showBanner() {

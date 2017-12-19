@@ -1,6 +1,8 @@
 import { Component, NgZone  } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MusicControls } from '@ionic-native/music-controls';
+import { AppContextProvider } from '../../providers/app-context/app-context';
+import { ChantCountModel } from '../../models/chant-count-model';
 
 /**
  * Generated class for the ChantCountPage page.
@@ -18,11 +20,16 @@ export class ChantCountPage {
   //cache : number=0;
   count : number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private musicControls: MusicControls, private zone:NgZone) {
+    private musicControls: MusicControls, private zone:NgZone,public appCtx: AppContextProvider) {
   }
 
 
   ionViewDidEnter(){
+    if(!this.appCtx.chant){
+      let target=this.navParams.data.target?this.navParams.data.target:108;
+      this.appCtx.chant=new ChantCountModel(target,()=>{alert("targetReached")},()=>{alert("rollIncreased")},);
+    }
+
     this.musicControls.create({
       track       : 'Time is Running Out',        // optional, default : ''
       artist      : 'Muse',                       // optional, default : ''
@@ -64,6 +71,7 @@ export class ChantCountPage {
                  default:
                   this.zone.run(() => {
                      this.count++;
+                     this.appCtx.chant.count++;
                   });
                 break;
              }

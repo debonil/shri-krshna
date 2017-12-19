@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ChantCountModel } from '../../models/chant-count-model';
 
 /*
   Generated class for the AppContextProvider provider.
@@ -10,7 +11,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppContextProvider {
 
-  constructor(public http: HttpClient) {
+  chant :ChantCountModel;
+
+  constructor() {
+    //this.chant=new ChantCountModel();
     console.log('Hello AppContextProvider Provider');
   }
 

@@ -25,8 +25,13 @@
                 </ion-card-header>
                 <img src="assets/imgs/lsk1.jpg"/>
                 <ion-card-content>
-                    <ion-label  color="primary"  style="font-size: 90px" >{{count}}</ion-label>
-                    <button ion-button full round (click)="count=0" >Reset</button>
+                    <ion-label>Roll: {{appCtx.chant.roll}} Target: {{appCtx.chant.target}} </ion-label>
+                    <ion-label  color="primary"  style="font-size: 90px;" >
+                      <button  color="light"  (click)="appCtx.chant.incr()" ion-button round large style="vertical-align: middle"><ion-icon name="add"></ion-icon></button>
+                      {{appCtx.chant.count}}
+                      <button color="light"  (click)="appCtx.chant.decr()" ion-button round large  style="vertical-align: middle"><ion-icon name="remove"></ion-icon></button>
+                    </ion-label>
+                    <button ion-button large round (click)="appCtx.chant.reset()" >Reset</button>
                 </ion-card-content>
               </ion-card>
           </ion-col>
