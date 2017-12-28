@@ -11,7 +11,7 @@ export class HomePage {
   target:number;
   constructor(public navCtrl: NavController,public appCtx: AppContextProvider) {
     //this.navCtrl.push(ChantCountPage);
-    console.log(appCtx);
+    //console.log(appCtx);
     
   }
 

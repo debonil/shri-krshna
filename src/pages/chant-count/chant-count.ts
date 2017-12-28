@@ -21,19 +21,20 @@ export class ChantCountPage {
   count : number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private musicControls: MusicControls, private zone:NgZone,public appCtx: AppContextProvider) {
-  }
 
-
-  ionViewDidEnter(){
     if(!this.appCtx.chant){
       let target=this.navParams.data.target?this.navParams.data.target:108;
       this.appCtx.chant=new ChantCountModel(target,()=>{alert("targetReached")},()=>{alert("rollIncreased")},);
     }
+  }
+
+
+  ionViewDidEnter(){
 
     this.musicControls.create({
-      track       : 'Time is Running Out',        // optional, default : ''
-      artist      : 'Muse',                       // optional, default : ''
-      cover       : 'albums/absolution.jpg',      // optional, default : nothing
+      track       : 'HARE KRSHNA',        // optional, default : ''
+      artist      : 'Shri Chaitanya',                       // optional, default : ''
+      cover       : 'assets/imgs/lsk1.jpg',      // optional, default : nothing
       // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
       //           or a remote url ('http://...', 'https://...', 'ftp://...')
       isPlaying   : false,                         // optional, default : true
