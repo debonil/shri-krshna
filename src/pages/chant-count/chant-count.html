@@ -33,7 +33,7 @@
                       {{appCtx.chant.count}}
                       <button color="light"  (click)="appCtx.chant.decr()" ion-button    style="vertical-align: middle"><ion-icon name="remove"></ion-icon></button>
                     </ion-label>
-                    <button ion-button large  (click)="appCtx.chant.reset();appCtx.persistAll()" >
+                    <button ion-button large  (click)="resetCounting()" >
                       <ion-icon name="refresh" ></ion-icon>
                     </button>
                 </ion-card-content>

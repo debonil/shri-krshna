@@ -23,7 +23,7 @@ export class AppContextProvider {
     storage.ready().then(() => {
       this.loadValues();
       //this.storage.set('name', 'Mr. Ionitron');
-      //setInterval(this.persistAll, 5000);
+      setInterval(()=>{this.persistAll()}, 10000);
     });
 
   }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MusicControls } from '@ionic-native/music-controls';
 import { AppContextProvider } from '../../providers/app-context/app-context';
 import { ChantCountModel } from '../../models/chant-count-model';
+import { Vibration } from '@ionic-native/vibration';
 
 /**
  * Generated class for the ChantCountPage page.
@@ -19,18 +20,16 @@ import { ChantCountModel } from '../../models/chant-count-model';
 export class ChantCountPage {
   //cache : number=0;
   count : number=0;
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private musicControls: MusicControls, private zone:NgZone,public appCtx: AppContextProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private musicControls: MusicControls,
+    private zone:NgZone,
+    public appCtx: AppContextProvider,
+    public  vibration:Vibration,
+  ) {
 
-    if(this.appCtx.chant){
-      this.appCtx.chantHistory.push(this.appCtx.chant);
-    }
-    let target=this.navParams.data.target?this.navParams.data.target:108;
-    this.appCtx.chant=new ChantCountModel("{}",target,()=>{
-      console.log("targetReached")//`{target:' ${target}'}`
-    },()=>{
-      console.log("rollIncreased")
-    },);
+    this.resetCounting();
     
   }
 
@@ -98,5 +97,21 @@ export class ChantCountPage {
 
 getNumber (num) {
   return new Array(num);   
+}
+
+
+
+resetCounting(): any {
+  if(this.appCtx.chant){
+    this.appCtx.chantHistory.push(this.appCtx.chant);
+  }
+  let target=this.navParams.data.target?this.navParams.data.target:108;
+  this.appCtx.chant=new ChantCountModel("{}",target,()=>{
+    console.log("targetReached")//`{target:' ${target}'}`
+    ///this.vibration.vibrate(1000);
+  },()=>{
+    console.log("rollIncreased")
+    this.vibration.vibrate(1000);
+  },);
 }
 }

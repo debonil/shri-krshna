@@ -75,7 +75,6 @@ export class MyApp {
       this.showAdBanner();
       this.registerBackButton();
       splashScreen.hide();
-      this.nav.setRoot(ChantHistoryPage);
     });
   }
 
@@ -141,6 +140,11 @@ export class MyApp {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
       // Set the root of the nav with params if it's a tab index
+      if(page.index!= undefined&&page.index==2)
+      this.showAdInterstitial();
+      if(page.index!= undefined&&page.index==3)
+        this.showAdRewardVideo();
+
       this.nav.setRoot(page.component, params).catch((err: any) => {
         console.log(`Didn't set nav root: ${err}`);
       });
