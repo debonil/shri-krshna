@@ -6,13 +6,58 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>about</ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>About author</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <div class="about-header">
+    <img src="assets/imgs/author.jpg" alt="author img">
+  </div>
+  <div padding class="about-info">
+    <!-- <h4>Debonil Ghosh</h4> -->
 
+    <ion-list no-lines>
+      <ion-item>
+        <ion-icon name="home" item-start></ion-icon>
+        <ion-label>Debonil Ghosh</ion-label>
+        <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="conferenceDate"></ion-datetime>
+      </ion-item>
+      <a ion-item  href="mailto:debonil.ghosh@gmail.com?Subject=Hello%20again">
+        <ion-icon name="mail" item-start></ion-icon>
+        <ion-label>debonil.ghosh@gmail.com</ion-label>
+      </a>
+      <a ion-item  href="https://www.facebook.com/debonil">
+        <ion-icon name="logo-facebook" item-start></ion-icon>
+        <ion-label>/debonil</ion-label>
+      </a>
+
+<!--       <ion-item>
+        <ion-icon name="pin" item-start></ion-icon>
+        <ion-label>Location</ion-label>
+        <ion-select>
+          <ion-option value="madison" selected>Madison, WI</ion-option>
+          <ion-option value="austin">Austin, TX</ion-option>
+          <ion-option value="chicago">Chicago, IL</ion-option>
+          <ion-option value="seattle">Seattle, WA</ion-option>
+        </ion-select>
+      </ion-item> -->
+    </ion-list>
+
+<!--     <p>
+      The Ionic Conference is a one-day conference featuring talks from the
+      Ionic team. It is focused on Ionic applications being built with
+      Ionic 2. This includes migrating apps from Ionic 1 to Ionic 2,
+      Angular concepts, Webpack, Sass, and many other technologies used
+      in Ionic 2. Tickets are completely sold out, and we’re expecting
+      more than 1000 developers – making this the largest Ionic
+      conference ever!
+    </p> -->
+  </div>
 </ion-content>

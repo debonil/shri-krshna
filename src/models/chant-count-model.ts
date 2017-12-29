@@ -11,18 +11,31 @@ export class ChantCountModel {
   rollIncreased: () => any;
 
 
-  constructor(target:number, targetReached?: () => any, rollIncreased?: () => any) {
+  constructor(stringyfiedValues?:string,target?:number,
+    targetReached?: () => any, rollIncreased?: () => any) {
     //this.navCtrl.push(ChantCountPage);
-    //console.log(appCtx);
-    this.startTime=new Date();
+    let obj=JSON.parse(stringyfiedValues);
+    this.count=obj.count?obj.count:0;
+    this.residue=obj.residue?obj.residue:0;
+    this.roll=obj.roll?obj.roll:0;
+    this.target=obj.target?obj.target:target;
+    this.startTime=obj.startTime?obj.startTime:new Date();
+    this.endTime=obj.endTime?obj.endTime:new Date();
     this.targetReached=targetReached;
     this.rollIncreased=rollIncreased;
+    console.log(this);
+
   }
 
   rollset(inc:boolean){
     if(this.target>0){
-      this.roll=this.count/this.target;
+      this.roll=Math.floor(this.count/this.target);
       this.residue=this.count%this.target;
+      
+      if(this.roll>0&&this.residue==0){
+        if(this.roll==1)this.targetReached();
+        this.rollIncreased();
+      }
     }
   }
 
@@ -31,8 +44,10 @@ export class ChantCountModel {
     this.rollset(true);
   }
   decr(){
-    this.count--;
-    this.rollset(false);
+    if(this.count>0){
+      this.count--;
+      this.rollset(false);
+    }
   }
   reset(){
     this.count=0;

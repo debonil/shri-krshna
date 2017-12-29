@@ -10,6 +10,7 @@ import { AboutPage } from '../pages/about/about';
 import { ChantCountPage } from '../pages/chant-count/chant-count';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { ChantHistoryPage } from '../pages/chant-history/chant-history';
 
 
 export interface PageInterface {
@@ -37,8 +38,10 @@ export class MyApp {
     // the left menu only works after login
     // the login page disables the left menu
     appPages: PageInterface[] = [
-      { title: 'Chant Count', name: 'ChantCountPage', component: ChantCountPage, tabComponent: ChantCountPage, index: 0, icon: 'calendar' },
-      { title: 'About', name: 'AboutPage', component: AboutPage, tabComponent: AboutPage, index: 0, icon: 'info' },
+      { title: 'Home', name: 'HomePage', component: HomePage, tabComponent: HomePage, index: 0, icon: 'home' },
+      { title: 'Chant Go', name: 'ChantCountPage', component: ChantCountPage, tabComponent: ChantCountPage, index: 1, icon: 'calendar' },
+      { title: 'Chant History', name: 'ChantHistoryPage', component: ChantHistoryPage, tabComponent: ChantHistoryPage, index: 2, icon: 'list-box' },
+      { title: 'About Author', name: 'AboutPage', component: AboutPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' },
       
     ];
     /* loggedInPages: PageInterface[] = [
@@ -72,6 +75,7 @@ export class MyApp {
       this.showAdBanner();
       this.registerBackButton();
       splashScreen.hide();
+      this.nav.setRoot(ChantHistoryPage);
     });
   }
 
@@ -137,7 +141,7 @@ export class MyApp {
       this.nav.getActiveChildNavs()[0].select(page.index);
     } else {
       // Set the root of the nav with params if it's a tab index
-      this.nav.setRoot(page.name, params).catch((err: any) => {
+      this.nav.setRoot(page.component, params).catch((err: any) => {
         console.log(`Didn't set nav root: ${err}`);
       });
     }

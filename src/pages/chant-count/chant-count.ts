@@ -22,10 +22,16 @@ export class ChantCountPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private musicControls: MusicControls, private zone:NgZone,public appCtx: AppContextProvider) {
 
-    if(!this.appCtx.chant){
-      let target=this.navParams.data.target?this.navParams.data.target:108;
-      this.appCtx.chant=new ChantCountModel(target,()=>{alert("targetReached")},()=>{alert("rollIncreased")},);
+    if(this.appCtx.chant){
+      this.appCtx.chantHistory.push(this.appCtx.chant);
     }
+    let target=this.navParams.data.target?this.navParams.data.target:108;
+    this.appCtx.chant=new ChantCountModel("{}",target,()=>{
+      console.log("targetReached")//`{target:' ${target}'}`
+    },()=>{
+      console.log("rollIncreased")
+    },);
+    
   }
 
 
@@ -89,4 +95,8 @@ export class ChantCountPage {
 
 }
 
+
+getNumber (num) {
+  return new Array(num);   
+}
 }
