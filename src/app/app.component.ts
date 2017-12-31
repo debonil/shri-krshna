@@ -141,7 +141,7 @@ export class MyApp {
     } else {
       // Set the root of the nav with params if it's a tab index
       if(page.index!= undefined&&page.index==2)
-      this.showAdInterstitial();
+         this.showAdInterstitial();
       if(page.index!= undefined&&page.index==3)
         this.showAdRewardVideo();
 
@@ -215,6 +215,8 @@ export class MyApp {
         this.platform.exitApp();
       } else if (this.nav.canGoBack()) {
         this.nav.pop({});
+      }else if (this.nav.getActive() && this.nav.getActive().component != HomePage) {
+        this.nav.setRoot(HomePage);
       } else {
         this.showToast();
         this.backButtonPressedOnceToExit = true;

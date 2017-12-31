@@ -18,8 +18,6 @@ import { Vibration } from '@ionic-native/vibration';
   templateUrl: 'chant-count.html',
 })
 export class ChantCountPage {
-  //cache : number=0;
-  count : number=0;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,8 +74,7 @@ export class ChantCountPage {
                      break;
                  default:
                   this.zone.run(() => {
-                     this.count++;
-                     this.appCtx.chant.count++;
+                     this.appCtx.chant.incr();
                   });
                 break;
              }

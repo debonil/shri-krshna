@@ -43,6 +43,10 @@
               <ion-icon item-start name="hammer"></ion-icon>
               Show Ads
             </button>
+            <button ion-item menuClose (click)="showAdInterstitial()" *ngIf="nav&&nav.getActive()">
+              <ion-icon item-start name="hammer"></ion-icon>
+              {{nav.getActive().name}}
+            </button>
           </ion-list>
         </ion-content>
     
