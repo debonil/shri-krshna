@@ -67,4 +67,11 @@ export class AppContextProvider {
       }
     });
   }
+
+
+  removeFromChantHistory(itemIndex:number){
+    if(itemIndex<this.chantHistory.length&&itemIndex>-1){
+      this.chantHistory.splice(itemIndex, 1);
+    }
+  }
 }

@@ -53,4 +53,8 @@ export class ChantCountModel {
     this.count=0;
   }
 
+  get duration(){
+    //return this.endTime.getTime()-this.startTime.getTime();
+    return new Date(this.endTime).getTime()-new Date(this.startTime).getTime();
+  }
 }
