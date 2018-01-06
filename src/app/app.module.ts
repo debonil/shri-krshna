@@ -14,13 +14,17 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppContextProvider } from '../providers/app-context/app-context';
 import { ChantHistoryPage } from '../pages/chant-history/chant-history';
 import { AboutPage } from '../pages/about/about';
+import { AnalyticsPage } from '../pages/analytics/analytics';
+import { ImageSelectorPage } from '../pages/image-selector/image-selector';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AboutPage,
-    ChantHistoryPage
+    ChantHistoryPage,
+    AnalyticsPage,
+    ImageSelectorPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { AboutPage } from '../pages/about/about';
     MyApp,
     HomePage,
     AboutPage,
-    ChantHistoryPage
+    ChantHistoryPage,
+    AnalyticsPage,
+    ImageSelectorPage
   ],
   providers: [
     StatusBar,
