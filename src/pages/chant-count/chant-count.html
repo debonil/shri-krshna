@@ -26,7 +26,7 @@
                 <img src="assets/imgs/lsk1.jpg"/>
                 <ion-card-content>
                     <ion-label *ngIf="appCtx.chant.roll>0" color="energized">
-                      <ion-icon name="flower" *ngFor="let zero of getNumber(appCtx.chant.roll); let i=index;" ></ion-icon>
+                      <ion-icon name="flower" *ngFor="let zero of appCtx.getNumber(appCtx.chant.roll); let i=index;" ></ion-icon>
                     </ion-label>
                     <ion-label  color="primary"  style="font-size: 90px;" >
                       <button  color="light"  (click)="appCtx.chant.incr()" ion-button   style="vertical-align: middle"><ion-icon name="add"></ion-icon></button>

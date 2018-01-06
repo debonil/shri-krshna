@@ -18,15 +18,20 @@
 
 <ion-content padding>
 <ion-list>
-  <ion-item-sliding #item  *ngFor="let chant of appCtx.chantHistory;let i = index"
-  (ionSwipe)="appCtx.removeFromChantHistory(i)">
-  <button ion-item >
-      <p  ion-text color="primary" >{{chant.startTime| date: 'fullDate'}}</p>
-      <h2 ion-text color="dark" padding style="font-size: 1.3em; font-weight: 400">
-          Count  : {{chant.count}}   Roll : {{chant.roll}}  Duration : {{chant.duration/60000}} mins
-      </h2>
+  <ion-item-sliding #item  *ngFor="let chant of appCtx.chantHistory;let i = index">
+  <button ion-item ><!-- (swipe)="appCtx.removeFromChantHistory(i)" -->
+      <p  ion-text color="primary" >{{chant.startTime| date: 'fullDate'}}
+          <span  ion-text float-right *ngIf="chant.roll>0"  color="energized">
+              <ion-icon name="flower" *ngFor="let zero of appCtx.getNumber(chant.roll)" ></ion-icon>
+          </span>
+      </p>
+
+      <h1 ion-text text-center color="dark" padding style="font-weight: bold" >
+          <!-- Count  :  -->{{chant.count}}<small> /{{chant.target}}</small>   <!-- Roll : {{chant.roll}} -->
+      </h1>
       <p>
           {{chant.startTime| date: 'shortTime'}} to {{chant.endTime| date: 'shortTime'}}
+          <span  ion-text color="dark" float-right>{{chant.duration/60000 | number:'1.0-2'}} mins</span>
       </p>
     </button>
     <!-- <ion-item-options side="left">
@@ -35,7 +40,10 @@
     </ion-item-options> -->
 
     <ion-item-options side="right">
-      <button ion-button (tap)="appCtx.removeFromChantHistory(i)">Remove</button>
+      <button ion-button (tap)="appCtx.removeFromChantHistory(i)">
+        <ion-icon name="trash"  style="font-size: 2em; font-weight: 400 "></ion-icon>
+        REMOVE
+      </button>
     </ion-item-options>
   </ion-item-sliding>
 </ion-list>

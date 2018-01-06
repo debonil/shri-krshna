@@ -92,15 +92,10 @@ export class ChantCountPage {
 }
 
 
-getNumber (num) {
-  return new Array(num);   
-}
-
-
-
 resetCounting(): any {
   if(this.appCtx.chant){
-    this.appCtx.chantHistory.push(this.appCtx.chant);
+    this.appCtx.chant.chantEnd();
+    this.appCtx.chantHistory.unshift(this.appCtx.chant);
   }
   let target=this.navParams.data.target?this.navParams.data.target:108;
   this.appCtx.chant=new ChantCountModel("{}",target,()=>{

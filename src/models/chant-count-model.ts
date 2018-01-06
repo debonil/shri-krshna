@@ -5,8 +5,8 @@ export class ChantCountModel {
   residue: number;
   roll: number=0;
   target: number;
-  startTime: Date;
-  endTime: Date;
+  startTime: number;
+  endTime: number;
   targetReached: () => any;
   rollIncreased: () => any;
 
@@ -19,8 +19,8 @@ export class ChantCountModel {
     this.residue=obj.residue?obj.residue:0;
     this.roll=obj.roll?obj.roll:0;
     this.target=obj.target?obj.target:target;
-    this.startTime=obj.startTime?obj.startTime:new Date();
-    this.endTime=obj.endTime?obj.endTime:new Date();
+    this.startTime=obj.startTime?obj.startTime:new Date().getTime();
+    this.endTime=obj.endTime?obj.endTime:new Date().getTime();
     this.targetReached=targetReached;
     this.rollIncreased=rollIncreased;
     console.log(this);
@@ -37,6 +37,7 @@ export class ChantCountModel {
         this.rollIncreased();
       }
     }
+    this.endTime=new Date().getTime();
   }
 
   incr(){
@@ -56,5 +57,9 @@ export class ChantCountModel {
   get duration(){
     //return this.endTime.getTime()-this.startTime.getTime();
     return new Date(this.endTime).getTime()-new Date(this.startTime).getTime();
+  }
+
+  chantEnd(): any {
+    ///this.endTime=new Date();
   }
 }

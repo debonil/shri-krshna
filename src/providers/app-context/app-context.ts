@@ -68,7 +68,9 @@ export class AppContextProvider {
     });
   }
 
-
+  getNumber (num) {
+    return new Array(num);   
+  }
   removeFromChantHistory(itemIndex:number){
     if(itemIndex<this.chantHistory.length&&itemIndex>-1){
       this.chantHistory.splice(itemIndex, 1);
